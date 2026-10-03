@@ -28,7 +28,7 @@ const daysUntil = (deadline:string) => {
  if(!/^\d{4}-\d{2}-\d{2}$/.test(deadline)) return 9999;
  const today = new Date(`${todayISO()}T00:00:00`);
  const end = new Date(`${deadline}T00:00:00`);
- return Math.max(0, Math.ceil((end.getTime()-today.getTime())/86400000));
+ const filtered=useMemo(()=>OPPORTUNITIES.filter(o=>isActiveOpportunity(o.deadline,o.status)).filter(o=>{const q=query.trim().toLowerCase();const remaining=daysUntil(o.deadline);return(!q||[o.title,o.organization,o.description,o.category,o.location].join(' ').toLowerCase().includes(q))&&(category==='All'||o.category===category)&&(location==='All'||o.location===location)&&remaining<=days&&(education==='All'||o.educationLevel.includes(education))}).sort((a,b)=>daysUntil(a.deadline)-daysUntil(b.deadline)),[query,category,location,days,education]);;
 };
 
 export default function DiscoverSection(){
