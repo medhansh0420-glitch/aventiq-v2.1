@@ -61,7 +61,7 @@ export default function DiscoverSection(){
        <button className={'save '+(isSaved(o.id)?'active':'')} onClick={()=>toggleSave(o.id)} aria-label="Save opportunity"><Bookmark size={18} fill={isSaved(o.id)?'currentColor':'none'}/></button>
      </div>
      <p className="desc">{o.description}</p>
-     <div className="tags">{o.tags.slice(0,3).map(t=><span className="tag" key={t}>{t}</span>)}</div>
+     <div className="tags">{[o.category].map(t=><span className="tag" key={t}>{t}</span>)}</div>
      <div className="bottom"><span className="deadline">{daysUntil(o.deadline)<=7?'Closing soon · ':''}{o.deadline}</span>{o.status!=='Closed'?<a className="apply" href={o.applicationUrl} target="_blank" rel="noreferrer">View & apply ↗</a>:<span className="meta">Closed</span>}</div>
    </article>)}
    </div>
