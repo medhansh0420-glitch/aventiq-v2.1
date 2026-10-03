@@ -1,6 +1,6 @@
 'use client';
 import {Bookmark,ExternalLink} from 'lucide-react';
-import type {Opportunity} from '../data/opportunities';
+import type {Opportunity} from '@/data/opportunities';
 export default function OpportunityCard({opportunity,saved,onSave}:{opportunity:Opportunity;saved:boolean;onSave:()=>void}){
 return <article style={{background:'var(--panel)',border:'1px solid var(--border)',borderRadius:18,padding:20,display:'flex',flexDirection:'column',gap:12}}>
 <div style={{display:'flex',justifyContent:'space-between',gap:12}}><div><div style={{fontSize:12,color:'var(--muted)'}}>{opportunity.category} · {opportunity.location}</div><h3 style={{margin:'7px 0 0',fontSize:18}}>{opportunity.title}</h3><div style={{color:'var(--muted)',fontSize:13,marginTop:5}}>{opportunity.organization}</div></div><button onClick={onSave} style={{background:'transparent',color:'var(--text)',border:0,cursor:'pointer'}}><Bookmark size={20} fill={saved?'currentColor':'none'}/></button></div>
