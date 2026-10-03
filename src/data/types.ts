@@ -1,0 +1,1 @@
+export type OpportunityCategory='Scholarship'|'Competition'|'Research'|'Internship'|'Entrepreneurship'|'Hackathon'|'Volunteering'|'Fellowship'; export type OpportunityStatus='Open'|'Closing Soon'|'Closed'; export type EducationLevel='High School'|'Undergraduate'|'Graduate'|'Postgraduate'|'Any';
