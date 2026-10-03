@@ -1,5 +1,5 @@
 import { Opportunity } from './types';
-
+export type { OpportunityCategory, OpportunityStatus, EducationLevel } from './types';
 export const OPPORTUNITIES: Opportunity[] = [
   {
     id: "AV0001",
