@@ -62,7 +62,7 @@ export default function DiscoverSection(){
      </div>
      <p className="desc">{o.description}</p>
      <div className="tags">{[o.category].map(t=><span className="tag" key={t}>{t}</span>)}</div>
-     <div className="bottom"><span className="deadline">{daysUntil(o.deadline)<=7?'Closing soon · ':''}{o.deadline}</span>{o.status!=='Closed'?<a className="apply" href={o.applicationUrl} target="_blank" rel="noreferrer">View & apply ↗</a>:<span className="meta">Closed</span>}</div>
+     <div className="bottom"><span className="deadline">{daysUntil(o.deadline)<=7?'Closing soon · ':''}{o.deadline}</span>{o.status!=='Closed'?<a className="apply" href={o.url} target="_blank" rel="noreferrer">View & apply ↗</a>:<span className="meta">Closed</span>}</div>
    </article>)}
    </div>
    {!filtered.length&&<div className="empty">No active opportunities match those filters. Try resetting the search.</div>}
