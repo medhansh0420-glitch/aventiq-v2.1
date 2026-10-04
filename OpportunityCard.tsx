@@ -1,10 +1,183 @@
 'use client';
-import {Bookmark,ExternalLink} from 'lucide-react';
-import type {Opportunity} from '@/data/opportunities';
-export default function OpportunityCard({opportunity,saved,onSave}:{opportunity:Opportunity;saved:boolean;onSave:()=>void}){
-return <article style={{background:'var(--panel)',border:'1px solid var(--border)',borderRadius:18,padding:20,display:'flex',flexDirection:'column',gap:12}}>
-<div style={{display:'flex',justifyContent:'space-between',gap:12}}><div><div style={{fontSize:12,color:'var(--muted)'}}>{opportunity.category} · {opportunity.location}</div><h3 style={{margin:'7px 0 0',fontSize:18}}>{opportunity.title}</h3><div style={{color:'var(--muted)',fontSize:13,marginTop:5}}>{opportunity.organization}</div></div><button onClick={onSave} style={{background:'transparent',color:'var(--text)',border:0,cursor:'pointer'}}><Bookmark size={20} fill={saved?'currentColor':'none'}/></button></div>
-<p style={{margin:0,color:'var(--muted)',lineHeight:1.5,fontSize:14}}>{opportunity.description}</p>
-<div style={{display:'flex',flexWrap:'wrap',gap:7}}>{opportunity.tags.slice(0,4).map(t=><span key={t} style={{fontSize:11,padding:'5px 8px',borderRadius:999,background:'var(--panel2)',color:'var(--muted)'}}>{t}</span>)}</div>
-<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:10,marginTop:'auto'}}><span style={{fontSize:12,color:opportunity.status==='Closed'?'#ff8b8b':'#8ee0a6'}}>{opportunity.status} · {opportunity.deadline}</span>{opportunity.status!=='Closed'?<a href={opportunity.applicationUrl} target="_blank" rel="noreferrer" style={{display:'inline-flex',alignItems:'center',gap:6,padding:'9px 12px',borderRadius:10,background:'#e8f7ff',color:'#07111f',fontWeight:700,fontSize:13}}>Apply <ExternalLink size={14}/></a>:<span style={{fontSize:12,color:'var(--muted)'}}>Closed</span>}</div>
-</article> }
+
+import { Bookmark, ExternalLink } from 'lucide-react';
+import type { Opportunity } from '../data/opportunities';
+
+export default function OpportunityCard({
+  opportunity,
+  saved,
+  onSave,
+}: {
+  opportunity: Opportunity;
+  saved: boolean;
+  onSave: () => void;
+}) {
+  return (
+    <article
+      style={{
+        background: 'var(--panel)',
+        border: '1px solid var(--border)',
+        borderRadius: 18,
+        padding: 20,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 12,
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: 12,
+        }}
+      >
+        <div>
+          <div style={{ fontSize: 12, color: 'var(--muted)' }}>
+            {opportunity.category} · {opportunity.location}
+          </div>
+
+          <h3 style={{ margin: '7px 0 0', fontSize: 18 }}>
+            {opportunity.title}
+          </h3>
+
+          <div
+            style={{
+              color: 'var(--muted)',
+              fontSize: 13,
+              marginTop: 5,
+            }}
+          >
+            {opportunity.organization}
+          </div>
+        </div>
+
+        <button
+          onClick={onSave}
+          type="button"
+          style={{
+            background: 'transparent',
+            color: 'var(--text)',
+            border: 0,
+            cursor: 'pointer',
+          }}
+        >
+          <Bookmark
+            size={20}
+            fill={saved ? 'currentColor' : 'none'}
+          />
+        </button>
+      </div>
+
+      <p
+        style={{
+          margin: 0,
+          color: 'var(--muted)',
+          lineHeight: 1.5,
+          fontSize: 14,
+        }}
+      >
+        {opportunity.description}
+      </p>
+
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 7,
+        }}
+      >
+        <span
+          style={{
+            fontSize: 11,
+            padding: '5px 8px',
+            borderRadius: 999,
+            background: 'var(--panel2)',
+            color: 'var(--muted)',
+          }}
+        >
+          {opportunity.category}
+        </span>
+
+        {opportunity.educationLevel && (
+          <span
+            style={{
+              fontSize: 11,
+              padding: '5px 8px',
+              borderRadius: 999,
+              background: 'var(--panel2)',
+              color: 'var(--muted)',
+            }}
+          >
+            {opportunity.educationLevel}
+          </span>
+        )}
+
+        {opportunity.verificationStatus && (
+          <span
+            style={{
+              fontSize: 11,
+              padding: '5px 8px',
+              borderRadius: 999,
+              background: 'var(--panel2)',
+              color: 'var(--muted)',
+            }}
+          >
+            {opportunity.verificationStatus}
+          </span>
+        )}
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: 10,
+          marginTop: 'auto',
+        }}
+      >
+        <span
+          style={{
+            fontSize: 12,
+            color:
+              opportunity.status.toLowerCase() === 'closed'
+                ? '#ff8b8b'
+                : '#8ee0a6',
+          }}
+        >
+          {opportunity.status} · {opportunity.deadline}
+        </span>
+
+        {opportunity.status.toLowerCase() !== 'closed' ? (
+          <a
+            href={opportunity.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              padding: '9px 12px',
+              borderRadius: 10,
+              background: '#e8f7ff',
+              color: '#07111f',
+              fontWeight: 700,
+              fontSize: 13,
+            }}
+          >
+            Apply <ExternalLink size={14} />
+          </a>
+        ) : (
+          <span
+            style={{
+              fontSize: 12,
+              color: 'var(--muted)',
+            }}
+          >
+            Closed
+          </span>
+        )}
+      </div>
+    </article>
+  );
+}
